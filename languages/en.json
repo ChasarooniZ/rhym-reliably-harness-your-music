@@ -1,3 +1,19 @@
 {
-    "MODULE.hello": "hello"
+  "I18N.LANGUAGE": "English",
+  "rhym": {
+    "module-settings": {
+      "enabled": {
+        "name": "",
+        "hint": ""
+      },
+      "combat-prefix": {
+        "name": "Combat Playlist Prefix",
+        "hint": "Prefix for all your combat playlists to pull from"
+      },
+      "combat-prep-playlist": {
+        "name": "Combat Preparations Playlist Name",
+        "hint": "Input the name of the playlist you wish to play when the combat tracker has been added but the combat hasn't begun yet."
+      }
+    }
+  }
 }
