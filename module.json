@@ -20,15 +20,8 @@
     "systems": [],
     "requires": []
   },
-  "esmodules": [
-    "scripts/module.js"
-  ],
-  "scripts": [
-    "scripts/lib/lib.js"
-  ],
-  "styles": [
-    "styles/module.css"
-  ],
+  "esmodules": ["scripts/module.js", "scripts/settings.js"],
+  "styles": ["styles/module.css"],
   "languages": [
     {
       "lang": "en",
