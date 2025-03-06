@@ -1,6 +1,6 @@
 {
-  "id": "module",
-  "title": "New Module",
+  "id": "rhym",
+  "title": "RHYM - Reliably Harness Your music",
   "description": "",
   "version": "#{VERSION}#",
   "library": "false",
