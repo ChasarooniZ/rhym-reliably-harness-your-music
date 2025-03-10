@@ -12,6 +12,17 @@ Currently a WIP module, releasing a basic version of one of the features of the 
   - If you **Right Click** a playlist you can change the icon
 - IF a Preparations playlist is set, it Will play it when a combat is created, until you select a separate playlist
 
+
+
+
+**Set Music**
+https://github.com/user-attachments/assets/a1d9752a-ed45-4486-b5aa-2647f760e94f
+**Customize Images**
+https://github.com/user-attachments/assets/e509612d-e4f4-48ac-a087-ea675a8f6643
+
+
+
+
 ## Table of Contents
 
 - [Changelog](#changelog)
