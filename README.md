@@ -16,8 +16,11 @@ Currently a WIP module, releasing a basic version of one of the features of the 
 
 
 **Set Music**
+
 https://github.com/user-attachments/assets/a1d9752a-ed45-4486-b5aa-2647f760e94f
+
 **Customize Images**
+
 https://github.com/user-attachments/assets/e509612d-e4f4-48ac-a087-ea675a8f6643
 
 
