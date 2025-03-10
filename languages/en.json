@@ -3,8 +3,8 @@
   "rhym": {
     "module-settings": {
       "enabled": {
-        "name": "",
-        "hint": ""
+        "name": "Enable Module",
+        "hint": "When unchecked disables all functionality of this module"
       },
       "combat-prefix": {
         "name": "Combat Playlist Prefix",
@@ -14,6 +14,10 @@
         "name": "Combat Preparations Playlist Name",
         "hint": "Input the name of the playlist you wish to play when the combat tracker has been added but the combat hasn't begun yet."
       }
+    },
+    "menu": {
+      "right-click": "Right click to change the playlist image",
+      "playlist-image-path": "Image File path:"
     }
   }
 }

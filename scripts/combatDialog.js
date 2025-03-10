@@ -2,7 +2,7 @@ import { MODULE_ID } from "./misc.js";
 
 export async function combatDialog() {
   if (!game.user.isGM) return;
-  const songPics = game.settings.get(MODULE_ID, "icon-mapping.combat");
+  const playlistPics = game.settings.get(MODULE_ID, "icon-mapping.combat");
 
   const def_pic = "icons/svg/d20-highlight.svg";
   const start = game.settings.get(MODULE_ID, "combat-prefix");
@@ -18,30 +18,35 @@ export async function combatDialog() {
     await playlist.playAll();
   }
 
-  let songs = game.playlists
+  let playlists = game.playlists
     .filter((p) => p.name.startsWith(start))
     .map((p) => ({
       name: p.name.slice(start.length),
       id: p.id,
-      img: songPics[p.id] || def_pic,
+      img: playlistPics[p.id] || def_pic,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
+  if (playlists.length > 0) {
+    pickDialog(playlists);
+  } else {
+    ui.notifications.error(
+      "No playlists to select from, look at your RHYM module settings to make sure your prefix matches your playlists"
+    );
+  }
 
-  pickDialog(songs);
-
-  async function pickDialog(songs) {
-    let song_content = ``;
+  async function pickDialog(playlists) {
+    let playlist_content = ``;
 
     // Create clickable song images
-    for (let song of songs) {
-      song_content += `<label class="radio-label">
-      <input type="radio" name="song" value="${song.id}">
-      <img src="${song.img}" data-id="${
-        song.id
+    for (let playlist of playlists) {
+      playlist_content += `<label class="radio-label">
+      <input type="radio" name="song" value="${playlist.id}">
+      <img src="${playlist.img}" data-id="${
+        playlist.id
       }" style="border:0px; width: 50px; height:50px; cursor: pointer;" class="${
-        song.name === playlistPrep.slice(start.length) ? "selected" : ""
-      }">
-      ${song.name}
+        playlist.name === playlistPrep.slice(start.length) ? "selected" : ""
+      }" data-tooltip="${game.i18n.localize("rhym.menu.right-click")}">
+      ${playlist.name}
     </label>`;
     }
 
@@ -83,7 +88,7 @@ export async function combatDialog() {
   </style>
   <form class="songpicker">
     <div class="form-group" id="songs">
-        ${song_content}
+        ${playlist_content}
     </div>
   </form>
   `;
@@ -117,7 +122,7 @@ export async function combatDialog() {
         });
 
         html.find("img").on("contextmenu", async function () {
-          let songId = $(this).data("id");
+          let playlistId = $(this).data("id");
           const imagePath = await getImageFilePath();
 
           if (imagePath) {
@@ -126,14 +131,14 @@ export async function combatDialog() {
               MODULE_ID,
               "icon-mapping.combat"
             );
-            settings[songId] = imagePath;
+            settings[playlistId] = imagePath;
             await game.settings.set(MODULE_ID, "icon-mapping.combat", settings);
 
             // Update the image source
             $(this).attr("src", imagePath);
 
             ui.notifications.notify(
-              `Updated image for ${songId} to ${imagePath}`
+              `Updated image for ${playlistId} to ${imagePath}`
             );
           } else {
             ui.notifications.warn("No new image path selected.");
@@ -150,7 +155,9 @@ export async function combatDialog() {
         content: `
         <form>
           <div class="form-group">
-            <label for="image-path">Image File Path:</label>
+            <label for="image-path">${game.i18n.localize(
+              "playlist-image-path"
+            )}</label>
             <div style="display: flex; align-items: center;">
               <input id="image-path" type="text" name="image-path"/>
               <button id="file-picker-btn" type="button" class="file-picker" data-type="image" data-target="image-path" title="Image Path" tabindex="-1">
@@ -170,7 +177,7 @@ export async function combatDialog() {
           },
           cancel: {
             label: "Cancel",
-            callback: () => reject("Dialog cancelled"),
+            callback: () => reject("Image not added"),
           },
         },
         render: (html) => {
@@ -184,7 +191,7 @@ export async function combatDialog() {
             filePicker.render(true);
           });
         },
-        close: () => reject("Dialog closed"),
+        close: () => reject(""),
       }).render(true);
     });
   }

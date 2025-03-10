@@ -3,10 +3,10 @@ import { MODULE_ID } from "./misc.js";
 Hooks.on("init", () => {
   game.settings.register(MODULE_ID, "enabled", {
     name: game.i18n.localize(
-      "rhym.module-settings.module-settings.enabled.name"
+      "rhym.module-settings.enabled.name"
     ),
     hint: game.i18n.localize(
-      "rhym.module-settings.module-settings.enabled.hint"
+      "rhym.module-settings.enabled.hint"
     ),
     scope: "world",
     config: true,
@@ -37,7 +37,7 @@ Hooks.on("init", () => {
     hint: game.i18n.localize("rhym.module-settings.combat-prep-playlist.hint"),
     scope: "world",
     config: true,
-    default: "",
+    default: "『Combat』Preparations",
     type: String,
   });
 });
