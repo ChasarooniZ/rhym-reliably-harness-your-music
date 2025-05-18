@@ -1,3 +1,10 @@
+## 0.2.0 - Victory!
+
+- `New`
+  - **Combat Victory Playlist**
+    - Adds a new option to set a Combat Victory Playlist
+    - When combat is ended it will pause all playing combat playlists and play the `Victory Playlist`
+
 ## 0.1.0 - Initial Release
 
 - Initial bare bones release of this module

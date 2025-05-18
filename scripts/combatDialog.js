@@ -8,15 +8,9 @@ export async function combatDialog() {
   const start = game.settings.get(MODULE_ID, "combat-prefix");
 
   // Play Planning Music
-  game.playlists
-    .filter((p) => p.playing && p.name.startsWith(start))
-    .forEach((p2) => p2.stopAll());
-
   const playlistPrep = game.settings.get(MODULE_ID, "combat-prep-playlist");
-  let playlist = game.playlists.getName(playlistPrep);
-  if (playlist) {
-    await playlist.playAll();
-  }
+
+  await startPlaylistStopOthers([start], { playlistName: playlistPrep });
 
   let playlists = game.playlists
     .filter((p) => p.name.startsWith(start))
@@ -105,20 +99,14 @@ export async function combatDialog() {
       render: (html) => {
         // Add click handler for each image to play the song
         html.find("img").on("click", async function () {
-          let songId = $(this).data("id");
+          let songID = $(this).data("id");
 
           // Deselect any previously selected image
           html.find("img").removeClass("selected");
           $(this).addClass("selected");
 
           // Stop all currently playing mood music
-          game.playlists
-            .filter((p) => p.playing && p.name.startsWith(start))
-            .forEach((p2) => p2.stopAll());
-
-          // Play the selected playlist
-          let playlist = game.playlists.get(songId);
-          await playlist.playAll();
+          await startPlaylistStopOthers([start], { playlistID: songID });
         });
 
         html.find("img").on("contextmenu", async function () {
@@ -195,4 +183,26 @@ export async function combatDialog() {
       }).render(true);
     });
   }
+}
+
+/**
+ * Starts one playlist and Starts playlist
+ * @param {string[]} prefixes list of prefixes to stop
+ * @param {{playlistID: string, playlistName: string}} id_or_name ID or Name of the playlist to stop
+ */
+export async function startPlaylistStopOthers(
+  prefixes,
+  { playlistID, playlistName }
+) {
+  game.playlists
+    .filter(
+      (p) => p.playing && prefixes.some((prefix) => p.name.startsWith(prefix))
+    )
+    .forEach((p2) => p2.stopAll());
+
+  // Play the selected playlist
+  let playlist = playlistID
+    ? game.playlists.get(playlistID)
+    : game.playlists.getName(playlistName);
+  await playlist.playAll();
 }

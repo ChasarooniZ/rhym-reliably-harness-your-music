@@ -2,12 +2,8 @@ import { MODULE_ID } from "./misc.js";
 
 Hooks.on("init", () => {
   game.settings.register(MODULE_ID, "enabled", {
-    name: game.i18n.localize(
-      "rhym.module-settings.enabled.name"
-    ),
-    hint: game.i18n.localize(
-      "rhym.module-settings.enabled.hint"
-    ),
+    name: game.i18n.localize("rhym.module-settings.enabled.name"),
+    hint: game.i18n.localize("rhym.module-settings.enabled.hint"),
     scope: "world",
     config: true,
     default: true,
@@ -38,6 +34,32 @@ Hooks.on("init", () => {
     scope: "world",
     config: true,
     default: "『Combat』Preparations",
+    type: String,
+  });
+
+  game.settings.register(MODULE_ID, "combat-victory.enabled", {
+    name: game.i18n.localize(
+      "rhym.module-settings.combat-victory.enabled.name"
+    ),
+    hint: game.i18n.localize(
+      "rhym.module-settings.combat-victory.enabled.hint"
+    ),
+    scope: "world",
+    config: true,
+    default: true,
+    type: Boolean,
+  });
+
+  game.settings.register(MODULE_ID, "combat-victory.playlist", {
+    name: game.i18n.localize(
+      "rhym.module-settings.combat-victory.playlist.name"
+    ),
+    hint: game.i18n.localize(
+      "rhym.module-settings.combat-victory.playlist.hint"
+    ),
+    scope: "world",
+    config: true,
+    default: "『Combat』Victory",
     type: String,
   });
 });
