@@ -28,6 +28,19 @@
     "menu": {
       "right-click": "Right click to change the playlist image",
       "playlist-image-path": "Image File path:"
+    },
+    "controls": {
+      "hype-music": {
+        "name": "Play Hype Music",
+        "toolclip": {
+          "heading": "Hype Music",
+          "items": {
+            "description": {
+              "paragraph": "Activate to see the hype music selection dialog"
+            }
+          }
+        }
+      }
     }
   }
 }

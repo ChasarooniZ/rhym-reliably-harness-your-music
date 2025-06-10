@@ -62,4 +62,14 @@ Hooks.on("init", () => {
     default: "『Combat』Victory",
     type: String,
   });
+
+
+  game.settings.register(MODULE_ID, "hype-moment.playlist", {
+    name: game.i18n.localize("rhym.module-settings.hype-moment.playlist.name"),
+    hint: game.i18n.localize("rhym.module-settings.hype-moment.playlist.hint"),
+    scope: "world",
+    config: true,
+    default: "『Combat』Hype",
+    type: String,
+  });
 });

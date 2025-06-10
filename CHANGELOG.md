@@ -1,3 +1,11 @@
+## 0.3.0 - Hype Music
+
+- `New`
+  - **Hype Music Dialog**
+    - Option to play music from a hype track
+    - Note players must have access to the playlist to play this
+    - This module will give them edit access when it loads if it exists
+
 ## 0.2.0 - Victory!
 
 - `New`
