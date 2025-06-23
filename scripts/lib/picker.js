@@ -11,7 +11,6 @@ import { MODULE_ID } from "../misc.js";
  * @param {string} [config.title="Pick Item"] - Dialog title
  * @param {string} [config.defaultImage="icons/svg/d20-highlight.svg"] - Default image for items
  * @param {number} [config.width=600] - Dialog width
- * @param {number} [config.imageSize=50] - Image size in pixels
  */
 export async function createItemPickerDialog(config) {
   const {
@@ -23,7 +22,6 @@ export async function createItemPickerDialog(config) {
     title = "Pick Item",
     defaultImage = "icons/svg/d20-highlight.svg",
     width = 600,
-    imageSize = 50,
   } = config;
 
   // Validate required parameters
@@ -70,7 +68,7 @@ export async function createItemPickerDialog(config) {
           <input type="radio" name="item" value="${item.id}">
           <img src="${item.img}" 
                data-id="${item.id}" 
-               style="border:0px; width: ${imageSize}px; height:${imageSize}px; cursor: pointer;" 
+               style="border:0px; width: 50px; height:50px; cursor: pointer;" 
                class="${isSelected ? "selected" : ""}" 
                data-tooltip-direction="UP"
                data-tooltip="${
@@ -82,115 +80,85 @@ export async function createItemPickerDialog(config) {
     }
 
     const content = `
-      <style>
-        .item-picker .form-group {
-          display: flex;
-          flex-wrap: wrap;
-          width: 100%;
-          align-items: flex-start;
-        }
-        
-        .item-picker .radio-label {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          justify-items: center;
-          flex: 1 0 20%;
-          line-height: normal;
-          margin: 5px;
-        }
-
-        /* Hide the radio inputs */
-        .item-picker input[type="radio"] {
-          display: none;
-        }
-        
-        .item-picker img {
-          border: 0px;
-          width: ${imageSize}px;
-          height: ${imageSize}px;
-          cursor: pointer;
-          transition: outline 0.2s ease;
-        }
-        
-        .item-picker .item-name {
-          margin-top: 5px;
-          font-size: 12px;
-          word-wrap: break-word;
-          max-width: ${imageSize + 10}px;
-        }
-            
-        /* SELECTED STYLES */
-        .item-picker img.selected {
-          outline: 2px solid #f00;
-        }
-        
-        .item-picker img:hover {
-          outline: 1px solid #ccc;
-        }
-        
-        .item-picker img.selected:hover {
-          outline: 2px solid #f00;
-        }
-      </style>
       <form class="item-picker">
-        <div class="form-group" id="items">
+        <div class="item-picker form-group" id="items">
           ${itemContent}
         </div>
       </form>`;
 
-    const dialog = new Dialog({
-      title,
+    const dialog = foundry.applications.api.DialogV2.wait({
+      window: {
+        title,
+        controls: [
+          {
+            action: "kofi",
+            label: "Support Dev",
+            icon: "fa-solid fa-mug-hot fa-beat-fade",
+            onClick: () => window.open("https://ko-fi.com/chasarooni", _blank),
+          },
+        ],
+        icon: "far fa-swords",
+      },
       content,
-      buttons: {
-        Cancel: {
+      position: {
+        width: width,
+      },
+      buttons: [
+        {
+          action: "cancel",
           label: "Cancel",
           callback: () => {},
         },
-      },
-      render: (html) => {
+      ],
+      render: (event) => {
+        const html = event.target.element;
         // Add click handler for each image
-        html.find("img").on("click", async function () {
-          const itemId = $(this).data("id");
+        $(html)
+          .find("img")
+          .on("click", async function () {
+            const itemId = $(this).data("id");
 
-          // Deselect any previously selected image
-          html.find("img").removeClass("selected");
-          $(this).addClass("selected");
+            // Deselect any previously selected image
+            $(html).find("img").removeClass("selected");
+            $(this).addClass("selected");
 
-          // Call the custom onClick handler
-          await onClick(itemId);
-        });
+            // Call the custom onClick handler
+            await onClick(itemId);
+          });
 
         // Add right-click handler for changing images
-        html.find("img").on("contextmenu", async function (e) {
-          e.preventDefault();
-          const itemId = $(this).data("id");
+        $(html)
+          .find("img")
+          .on("contextmenu", async function (e) {
+            e.preventDefault();
+            const itemId = $(this).data("id");
 
-          try {
-            const imagePath = await getImageFilePath();
-            if (imagePath) {
-              // Update the settings
-              const settings =
-                game.settings.get(MODULE_ID, imageSettingsPath) || {};
-              settings[itemId] = imagePath;
-              await game.settings.set(MODULE_ID, imageSettingsPath, settings);
+            try {
+              const imagePath = await getImageFilePath();
+              if (imagePath) {
+                // Update the settings
+                const settings =
+                  game.settings.get(MODULE_ID, imageSettingsPath) || {};
+                settings[itemId] = imagePath;
+                await game.settings.set(MODULE_ID, imageSettingsPath, settings);
 
-              // Update the image source
-              $(this).attr("src", imagePath);
+                // Update the image source
+                $(this).attr("src", imagePath);
 
-              ui.notifications.notify(`Updated image for item ${itemId}`);
+                ui.notifications.notify(`Updated image for item ${itemId}`);
+              }
+            } catch (error) {
+              if (error !== "Image not added" && error !== "") {
+                ui.notifications.error(`Error updating image: ${error}`);
+              }
             }
-          } catch (error) {
-            if (error !== "Image not added" && error !== "") {
-              ui.notifications.error(`Error updating image: ${error}`);
-            }
-          }
-        });
+          });
 
         // If there's a starting selection, trigger its click handler
         if (startingSelection) {
-          const startingItem = html.find(`img[data-id="${startingSelection}"]`);
+          const startingItem = $(html).find(
+            `img[data-id="${startingSelection}"]`
+          );
           if (startingItem.length) {
             // Don't trigger the visual selection since it's already applied in CSS
             // Just call the onClick handler
@@ -199,8 +167,6 @@ export async function createItemPickerDialog(config) {
         }
       },
     });
-
-    dialog.render(true, { width });
   }
 
   async function getImageFilePath() {
