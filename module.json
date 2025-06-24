@@ -1,13 +1,13 @@
 {
   "id": "rhym",
   "title": "RHYM: Reliably Harness Your Music",
-  "description": "",
+  "description": "Improve your music management experience",
   "version": "#{VERSION}#",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
   "compatibility": {
     "minimum": 12,
-    "verified": 12
+    "verified": 13
   },
   "authors": [
     {

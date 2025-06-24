@@ -86,7 +86,7 @@ export async function createItemPickerDialog(config) {
         </div>
       </form>`;
 
-    const dialog = foundry.applications.api.DialogV2.wait({
+    foundry.applications.api.DialogV2.wait({
       window: {
         title,
         controls: [
@@ -134,11 +134,11 @@ export async function createItemPickerDialog(config) {
             const itemId = $(this).data("id");
 
             try {
-              const imagePath = await getImageFilePath();
+              const settings =
+                game.settings.get(MODULE_ID, imageSettingsPath) || {};
+              const imagePath = await getImageFilePath(settings?.[itemId]);
               if (imagePath) {
                 // Update the settings
-                const settings =
-                  game.settings.get(MODULE_ID, imageSettingsPath) || {};
                 settings[itemId] = imagePath;
                 await game.settings.set(MODULE_ID, imageSettingsPath, settings);
 
@@ -169,50 +169,23 @@ export async function createItemPickerDialog(config) {
     });
   }
 
-  async function getImageFilePath() {
-    return new Promise((resolve, reject) => {
-      new Dialog({
-        title: "Select an Image",
-        content: `
-          <form>
-            <div class="form-group">
-              <label for="image-path">${
-                game.i18n.localize("playlist-image-path") || "Image Path"
-              }</label>
-              <div style="display: flex; align-items: center;">
-                <input id="image-path" type="text" name="image-path"/>
-                <button id="file-picker-btn" type="button" class="file-picker" data-type="image" data-target="image-path" title="Image Path" tabindex="-1">
-                  <i class="fas fa-file-import fa-fw"></i>
-                </button>
-              </div>
-            </div>
-          </form>`,
-        buttons: {
-          submit: {
-            label: "Submit",
-            callback: (html) => {
-              const filePath = html.find('[name="image-path"]').val();
-              resolve(filePath || null);
-            },
-          },
-          cancel: {
-            label: "Cancel",
-            callback: () => reject("Image not added"),
-          },
+  async function getImageFilePath(currentPath) {
+    let guess;
+    try {
+      guess = await foundry.applications.api.DialogV2.prompt({
+        window: { title: "Select an image" },
+        content: `<file-picker name="image-path" type="image" value="${
+          currentPath || ""
+        }" autofocus>`,
+        buttons: [{ action: "cancel", label: "Cancel" }],
+        ok: {
+          label: "Submit",
+          callback: (event, button, dialog) => button.form.elements.guess.value,
         },
-        render: (html) => {
-          html.find("#file-picker-btn").click(async () => {
-            const filePicker = new FilePicker({
-              type: "image",
-              callback: (path) => {
-                html.find('[name="image-path"]').val(path);
-              },
-            });
-            filePicker.render(true);
-          });
-        },
-        close: () => reject(""),
-      }).render(true);
-    });
+      });
+    } catch {
+      return;
+    }
+    return guess;
   }
 }
