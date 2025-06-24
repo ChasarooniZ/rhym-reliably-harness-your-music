@@ -1,3 +1,10 @@
+## 0.3.0 - V13
+
+- `Updates`
+  - Now supports `v13`
+  - Updated dialog to `DialogV2`
+  - Generalized the playlist picker dialog to make adding new dialogs easier
+
 ## 0.2.0 - Victory!
 
 - `New`

@@ -1,208 +1,73 @@
+import { createItemPickerDialog } from "./lib/picker.js";
 import { MODULE_ID } from "./misc.js";
 
 export async function combatDialog() {
   if (!game.user.isGM) return;
-  const playlistPics = game.settings.get(MODULE_ID, "icon-mapping.combat");
 
-  const def_pic = "icons/svg/d20-highlight.svg";
   const start = game.settings.get(MODULE_ID, "combat-prefix");
-
-  // Play Planning Music
   const playlistPrep = game.settings.get(MODULE_ID, "combat-prep-playlist");
 
-  await startPlaylistStopOthers([start], { playlistName: playlistPrep });
-
-  let playlists = game.playlists
+  // Prepare combat playlists
+  const playlists = game.playlists
     .filter((p) => p.name.startsWith(start))
     .map((p) => ({
-      name: p.name.slice(start.length),
       id: p.id,
-      img: playlistPics[p.id] || def_pic,
+      name: p.name.slice(start.length),
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
-  if (playlists.length > 0) {
-    pickDialog(playlists);
-  } else {
+
+  if (playlists.length === 0) {
     ui.notifications.error(
       "No playlists to select from, look at your RHYM module settings to make sure your prefix matches your playlists"
     );
+    return;
   }
 
-  async function pickDialog(playlists) {
-    let playlist_content = ``;
+  // Determine starting selection
+  const startingSelection = playlists.find(
+    (p) => p.name === playlistPrep?.slice(start.length)
+  )?.id;
 
-    // Create clickable song images
-    for (let playlist of playlists) {
-      playlist_content += `<label class="radio-label">
-      <input type="radio" name="song" value="${playlist.id}">
-      <img src="${playlist.img}" data-id="${
-        playlist.id
-      }" style="border:0px; width: 50px; height:50px; cursor: pointer;" class="${
-        playlist.name === playlistPrep.slice(start.length) ? "selected" : ""
-      }" data-tooltip="${game.i18n.localize("rhym.menu.right-click")}">
-      ${playlist.name}
-    </label>`;
-    }
-
-    let content = `
-  <style>
-  .songpicker .form-group {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      align-items: flex-start;
-    }
-    
-    .songpicker .radio-label {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      justify-items: center;
-      flex: 1 0 20%;
-      line-height: normal;
-    }
-
-    /* Hide the radio inputs */
-    .songpicker input[type="radio"] {
-      display: none;
-    }
-    
-    .songpicker img {
-      border: 0px;
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-    }
-        
-    /* CHECKED STYLES */
-    .songpicker img.selected {
-      outline: 2px solid #f00;
-    }
-  </style>
-  <form class="songpicker">
-    <div class="form-group" id="songs">
-        ${playlist_content}
-    </div>
-  </form>
-  `;
-
-    let dialog = new Dialog({
-      title: "Pick Combat Music",
-      content,
-      buttons: {
-        Cancel: {
-          label: `Cancel`,
-          callback: () => {},
-        },
-      },
-      render: (html) => {
-        // Add click handler for each image to play the song
-        html.find("img").on("click", async function () {
-          let songID = $(this).data("id");
-
-          // Deselect any previously selected image
-          html.find("img").removeClass("selected");
-          $(this).addClass("selected");
-
-          // Stop all currently playing mood music
-          await startPlaylistStopOthers([start], { playlistID: songID });
-        });
-
-        html.find("img").on("contextmenu", async function () {
-          let playlistId = $(this).data("id");
-          const imagePath = await getImageFilePath();
-
-          if (imagePath) {
-            // Update the settings
-            const settings = game.settings.get(
-              MODULE_ID,
-              "icon-mapping.combat"
-            );
-            settings[playlistId] = imagePath;
-            await game.settings.set(MODULE_ID, "icon-mapping.combat", settings);
-
-            // Update the image source
-            $(this).attr("src", imagePath);
-
-            ui.notifications.notify(
-              `Updated image for ${playlistId} to ${imagePath}`
-            );
-          } else {
-            ui.notifications.warn("No new image path selected.");
-          }
-        });
-      },
-    }).render(true, { width: 600 });
-  }
-
-  async function getImageFilePath() {
-    return new Promise((resolve, reject) => {
-      new Dialog({
-        title: "Select an Image",
-        content: `
-        <form>
-          <div class="form-group">
-            <label for="image-path">${game.i18n.localize(
-              "playlist-image-path"
-            )}</label>
-            <div style="display: flex; align-items: center;">
-              <input id="image-path" type="text" name="image-path"/>
-              <button id="file-picker-btn" type="button" class="file-picker" data-type="image" data-target="image-path" title="Image Path" tabindex="-1">
-                  <i class="fas fa-file-import fa-fw"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-      `,
-        buttons: {
-          submit: {
-            label: "Submit",
-            callback: (html) => {
-              const filePath = html.find('[name="image-path"]').val();
-              resolve(filePath);
-            },
-          },
-          cancel: {
-            label: "Cancel",
-            callback: () => reject("Image not added"),
-          },
-        },
-        render: (html) => {
-          html.find("#file-picker-btn").click(async () => {
-            const filePicker = new FilePicker({
-              type: "image",
-              callback: (path) => {
-                html.find('[name="image-path"]').val(path);
-              },
-            });
-            filePicker.render(true);
-          });
-        },
-        close: () => reject(""),
-      }).render(true);
-    });
-  }
+  await createItemPickerDialog({
+    items: playlists,
+    imageSettingsPath: "icon-mapping.combat",
+    title: "Pick Combat Music",
+    onStart: async () => {
+      // Start playlist preparation music
+      await startPlaylistStopOthers([start], { playlistName: playlistPrep });
+    },
+    onClick: async (playlistId) => {
+      // Stop all currently playing mood music and start selected playlist
+      await startPlaylistStopOthers([start], { playlistID: playlistId });
+    },
+    startingSelection,
+  });
 }
 
 /**
- * Starts one playlist and Starts playlist
- * @param {string[]} prefixes list of prefixes to stop
- * @param {{playlistID: string, playlistName: string}} id_or_name ID or Name of the playlist to stop
+ * Starts one playlist and stops others
+ * @param {string[]} prefixes - List of prefixes to stop
+ * @param {{playlistID?: string, playlistName?: string}} options - ID or Name of the playlist to start
  */
 export async function startPlaylistStopOthers(
   prefixes,
   { playlistID, playlistName }
 ) {
+  // Stop all currently playing playlists with matching prefixes
   game.playlists
     .filter(
       (p) => p.playing && prefixes.some((prefix) => p.name.startsWith(prefix))
     )
-    .forEach((p2) => p2.stopAll());
+    .forEach((p) => p.stopAll());
 
   // Play the selected playlist
-  let playlist = playlistID
-    ? game.playlists.get(playlistID)
-    : game.playlists.getName(playlistName);
-  await playlist.playAll();
+  if (playlistID || playlistName) {
+    const playlist = playlistID
+      ? game.playlists.get(playlistID)
+      : game.playlists.getName(playlistName);
+
+    if (playlist) {
+      await playlist.playAll();
+    }
+  }
 }
