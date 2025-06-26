@@ -2,8 +2,10 @@
 
 - `New`
   - `Mood Music Management` - Added a similar picker to manage mood
-  - Includes a control and a hotkey `M`
-- `Fixed`
+    - Includes a control and a hotkey `M`
+    - Will automatically open after combat
+  - `Victory Duration` - Can set a limited amount of time to play the victory music for
+- `Updated`
   - Fixed image filepicker not working
 
 ## 0.3.0 - V13
