@@ -22,12 +22,34 @@
         "playlist": {
           "name": "Victory Playlist",
           "hint": "Name of the playlist to play when combat is ended"
+        },
+        "duration": {
+          "name": "Play the victory song for...",
+          "hint": "How long in seconds to play the victory playlist for, 0 means it will never be automatically stopped"
         }
+      },
+      "mood-prefix": {
+        "name": "Mood Playlist Prefix",
+        "hint": "Prefix for all your mood playlists to pull from"
       }
     },
     "menu": {
       "right-click": "Right click to change the playlist image",
       "playlist-image-path": "Image File path:"
+    },
+    "controls": {
+      "mood-music": {
+        "name": "Open Mood Music Menu",
+        "hint": "Open Mood Music picker",
+        "toolclip": {
+          "heading": "Mood Music",
+          "items": {
+            "description": {
+              "paragraph": "Open Mood Music picker dialog"
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 import { MODULE_ID } from "./misc.js";
+import { moodDialog } from "./moodDialog.js";
 
 Hooks.on("init", () => {
   game.settings.register(MODULE_ID, "enabled", {
@@ -62,4 +63,60 @@ Hooks.on("init", () => {
     default: "『Combat』Victory",
     type: String,
   });
+
+  game.settings.register(MODULE_ID, "combat-victory.duration", {
+    name: game.i18n.localize(
+      "rhym.module-settings.combat-victory.duration.name"
+    ),
+    hint: game.i18n.localize(
+      "rhym.module-settings.combat-victory.duration.hint"
+    ),
+    scope: "world",
+    config: true,
+    range: {
+      min: 0,
+      max: 100,
+      step: 1,
+    },
+    default: 15,
+    type: Number,
+  });
+
+  game.settings.register(MODULE_ID, "mood-prefix", {
+    name: game.i18n.localize("rhym.module-settings.mood-prefix.name"),
+    hint: game.i18n.localize("rhym.module-settings.mood-prefix.hint"),
+    scope: "world",
+    config: true,
+    default: "『Mood』",
+    type: String,
+  });
+
+  game.settings.register(MODULE_ID, "icon-mapping.mood", {
+    name: "",
+    hint: "",
+    scope: "world",
+    config: false,
+    default: {},
+    type: Object,
+  });
+
+  game.keybindings.register(MODULE_ID, "mood-dialog", {
+    name: game.i18n.localize(`${MODULE_ID}.controls.mood-dialog.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.controls.mood-dialog.hint`),
+    editable: [
+      {
+        key: "KeyM",
+      },
+    ],
+    onDown: (context) => {
+      moodDialog();
+    },
+    onUp: () => {},
+    restricted: true, // Restrict this Keybinding to gamemaster only?
+    precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
+  });
 });
+
+// export function registerKeybindings() {
+
+// }

@@ -2,13 +2,13 @@ import { startPlaylistStopOthers } from "./lib/helper.js";
 import { createItemPickerDialog } from "./lib/picker.js";
 import { MODULE_ID } from "./misc.js";
 
-export async function combatDialog() {
+export async function moodDialog() {
   if (!game.user.isGM) return;
 
-  const start = game.settings.get(MODULE_ID, "combat-prefix");
-  const playlistPrep = game.settings.get(MODULE_ID, "combat-prep-playlist");
+  const start = game.settings.get(MODULE_ID, "mood-prefix");
+  const combat = game.settings.get(MODULE_ID, "combat-prefix");
 
-  // Prepare combat playlists
+  // Prepare mood playlists
   const playlists = game.playlists
     .filter((p) => p.name.startsWith(start))
     .map((p) => ({
@@ -24,23 +24,19 @@ export async function combatDialog() {
     return;
   }
 
-  // Determine starting selection
-  const startingSelection = playlists.find(
-    (p) => p.name === playlistPrep?.slice(start.length)
-  )?.id;
-
   await createItemPickerDialog({
     items: playlists,
-    imageSettingsPath: "icon-mapping.combat",
-    title: "Pick Combat Music",
+    imageSettingsPath: "icon-mapping.mood",
+    title: "Pick Mood Music",
     onStart: async () => {
       // Start playlist preparation music
-      await startPlaylistStopOthers([start], { playlistName: playlistPrep });
+      //   await startPlaylistStopOthers([start]);
     },
     onClick: async (playlistId) => {
       // Stop all currently playing mood music and start selected playlist
-      await startPlaylistStopOthers([start], { playlistID: playlistId });
+      await startPlaylistStopOthers([start, combat], {
+        playlistID: playlistId,
+      });
     },
-    startingSelection,
   });
 }

@@ -1,3 +1,11 @@
+## 0.4.0 - The Mood
+
+- `New`
+  - `Mood Music Management` - Added a similar picker to manage mood
+  - Includes a control and a hotkey `M`
+- `Fixed`
+  - Fixed image filepicker not working
+
 ## 0.3.0 - V13
 
 - `Updates`

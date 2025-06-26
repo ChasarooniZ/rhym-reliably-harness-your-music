@@ -94,7 +94,7 @@ export async function createItemPickerDialog(config) {
             action: "kofi",
             label: "Support Dev",
             icon: "fa-solid fa-mug-hot fa-beat-fade",
-            onClick: () => window.open("https://ko-fi.com/chasarooni", _blank),
+            onClick: () => window.open("https://ko-fi.com/chasarooni", "_blank"),
           },
         ],
         icon: "far fa-swords",
@@ -174,13 +174,14 @@ export async function createItemPickerDialog(config) {
     try {
       guess = await foundry.applications.api.DialogV2.prompt({
         window: { title: "Select an image" },
-        content: `<file-picker name="image-path" type="image" value="${
+        content: `<file-picker name="imagepath" type="image" value="${
           currentPath || ""
         }" autofocus>`,
         buttons: [{ action: "cancel", label: "Cancel" }],
         ok: {
           label: "Submit",
-          callback: (event, button, dialog) => button.form.elements.guess.value,
+          callback: (event, button, dialog) =>
+            button.form.elements.imagepath.value,
         },
       });
     } catch {
