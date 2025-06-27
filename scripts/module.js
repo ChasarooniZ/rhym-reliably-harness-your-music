@@ -60,7 +60,7 @@ Hooks.once("ready", async function () {
           "combat-victory.duration"
         );
         if (duration !== 0) {
-          setInterval(
+          setTimeout(
             async () =>
               await startPlaylistStopOthers([
                 game.settings.get(MODULE_ID, "combat-prefix"),

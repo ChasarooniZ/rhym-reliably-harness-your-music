@@ -1,3 +1,7 @@
+## 0.4.2 - Emergency Fix
+
+- Fix `setinterval` to `setTimeout`
+
 ## 0.4.1 - Error Fix
 
 - Fix misc error
