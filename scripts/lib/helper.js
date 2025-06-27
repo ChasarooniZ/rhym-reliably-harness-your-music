@@ -14,10 +14,10 @@ export async function startPlaylistStopOthers(prefixes, config) {
     .forEach((p) => p.stopAll());
 
   // Play the selected playlist
-  if (config.playlistID || config.playlistName) {
-    const playlist = config.playlistID
-      ? game.playlists.get(config.playlistID)
-      : game.playlists.getName(config.playlistName);
+  if (config?.playlistID || config?.playlistName) {
+    const playlist = config?.playlistID
+      ? game.playlists.get(config?.playlistID)
+      : game.playlists.getName(config?.playlistName);
 
     if (playlist) {
       await playlist.playAll();

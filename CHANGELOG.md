@@ -1,3 +1,7 @@
+## 0.4.1 - Error Fix
+
+- Fix misc error
+
 ## 0.4.0 - The Mood
 
 - `New`
