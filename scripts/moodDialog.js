@@ -28,6 +28,7 @@ export async function moodDialog() {
     items: playlists,
     imageSettingsPath: "icon-mapping.mood",
     title: "Pick Mood Music",
+    icon: "fa-solid fa-moon-stars",
     onStart: async () => {
       // Start playlist preparation music
       //   await startPlaylistStopOthers([start]);

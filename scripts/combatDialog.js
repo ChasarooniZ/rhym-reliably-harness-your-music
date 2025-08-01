@@ -33,6 +33,7 @@ export async function combatDialog() {
     items: playlists,
     imageSettingsPath: "icon-mapping.combat",
     title: "Pick Combat Music",
+    icon: "far fa-swords",
     onStart: async () => {
       // Start playlist preparation music
       await startPlaylistStopOthers([start], { playlistID: startingSelection });

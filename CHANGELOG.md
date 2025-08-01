@@ -2,6 +2,8 @@
 
 - `New`
   - Changed both the Hotkey and Tool for `Mood Music` to be a contextual `Music Dialog` which opens either `Combat` or `Mood` depending on the scenario (🧠 @Maple)
+- `Updated`
+  - Updated the icons shown for each dialog type to match the dialog
 
 ## 0.4.2 - Emergency Fix
 

@@ -22,6 +22,7 @@ export async function createItemPickerDialog(config) {
     title = "Pick Item",
     defaultImage = "icons/svg/d20-highlight.svg",
     width = 600,
+    icon = "far fa-swords"
   } = config;
 
   // Validate required parameters
@@ -97,7 +98,7 @@ export async function createItemPickerDialog(config) {
             onClick: () => window.open("https://ko-fi.com/chasarooni", "_blank"),
           },
         ],
-        icon: "far fa-swords",
+        icon: icon,
       },
       content,
       position: {
