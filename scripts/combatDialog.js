@@ -35,7 +35,7 @@ export async function combatDialog() {
     title: "Pick Combat Music",
     onStart: async () => {
       // Start playlist preparation music
-      await startPlaylistStopOthers([start], { playlistName: playlistPrep });
+      await startPlaylistStopOthers([start], { playlistID: startingSelection });
     },
     onClick: async (playlistId) => {
       // Stop all currently playing mood music and start selected playlist

@@ -1,3 +1,8 @@
+## 0.5.0 - Contextual Button
+
+- `New`
+  - Changed both the Hotkey and Tool for `Mood Music` to be a contextual `Music Dialog` which opens either `Combat` or `Mood` depending on the scenario (🧠 @Maple)
+
 ## 0.4.2 - Emergency Fix
 
 - Fix `setinterval` to `setTimeout`

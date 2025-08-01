@@ -38,14 +38,14 @@
       "playlist-image-path": "Image File path:"
     },
     "controls": {
-      "mood-music": {
-        "name": "Open Mood Music Menu",
-        "hint": "Open Mood Music picker",
+      "music": {
+        "name": "Open Contextual Music Menu",
+        "hint": "Open Contextual Music picker",
         "toolclip": {
-          "heading": "Mood Music",
+          "heading": "Open Music",
           "items": {
             "description": {
-              "paragraph": "Open Mood Music picker dialog"
+              "paragraph": "Open Music picker dialog"
             }
           }
         }

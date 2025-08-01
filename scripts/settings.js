@@ -1,4 +1,5 @@
 import { MODULE_ID } from "./misc.js";
+import { contextualMusicDialog } from "./module.js";
 import { moodDialog } from "./moodDialog.js";
 
 Hooks.on("init", () => {
@@ -100,16 +101,16 @@ Hooks.on("init", () => {
     type: Object,
   });
 
-  game.keybindings.register(MODULE_ID, "mood-dialog", {
-    name: game.i18n.localize(`${MODULE_ID}.controls.mood-dialog.name`),
-    hint: game.i18n.localize(`${MODULE_ID}.controls.mood-dialog.hint`),
+  game.keybindings.register(MODULE_ID, "music-dialog", {
+    name: game.i18n.localize(`${MODULE_ID}.controls.music.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.controls.music.hint`),
     editable: [
       {
         key: "KeyM",
       },
     ],
     onDown: (context) => {
-      moodDialog();
+      contextualMusicDialog();
     },
     onUp: () => {},
     restricted: true, // Restrict this Keybinding to gamemaster only?

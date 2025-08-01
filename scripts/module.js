@@ -8,20 +8,20 @@ Hooks.once("init", async function () {
     if (!game.user.isGM && !game.settings.get(MODULE_ID, "enabled")) return;
 
     const toolData = {
-      name: "mood-music",
-      title: localize("controls.mood-music.name"),
+      name: "music",
+      title: localize("controls.music.name"),
       button: true,
       icon: "fas fa-user-music",
       onClick: async () => {
-        moodDialog();
+        contextualMusicDialog();
       },
       toolclip: {
         src: "modules/rhym/resources/videos/mood-music-toolclip.webm",
-        heading: localize("controls.mood-music.toolclip.heading"),
+        heading: localize("controls.music.toolclip.heading"),
         items: [
           {
             paragraph: localize(
-              "controls.mood-music.toolclip.items.description.paragraph"
+              "controls.music.toolclip.items.description.paragraph"
             ),
           },
         ],
@@ -31,7 +31,7 @@ Hooks.once("init", async function () {
     if (Array.isArray(controls)) {
       controls.find((con) => con.name == "token").tools.push(toolData);
     } else {
-      controls.tokens.tools["mood-music"] = toolData;
+      controls.tokens.tools["music"] = toolData;
     }
   });
 });
@@ -73,3 +73,12 @@ Hooks.once("ready", async function () {
     }
   });
 });
+
+
+export async function contextualMusicDialog() {
+  if (game?.combat) {
+    combatDialog()
+  } else {
+    moodDialog();
+  }
+}
