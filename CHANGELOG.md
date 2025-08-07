@@ -1,3 +1,8 @@
+## 0.5.1 - Please Stop the Music
+
+- `Updated`
+  - Playing a combat track now stops `Mood` music (🧠 @Maple)
+
 ## 0.5.0 - Contextual Button
 
 - `New`

@@ -6,6 +6,7 @@ export async function combatDialog() {
   if (!game.user.isGM) return;
 
   const start = game.settings.get(MODULE_ID, "combat-prefix");
+  const mood = game.settings.get(MODULE_ID, "mood-prefix");
   const playlistPrep = game.settings.get(MODULE_ID, "combat-prep-playlist");
 
   // Prepare combat playlists
@@ -40,7 +41,7 @@ export async function combatDialog() {
     },
     onClick: async (playlistId) => {
       // Stop all currently playing mood music and start selected playlist
-      await startPlaylistStopOthers([start], { playlistID: playlistId });
+      await startPlaylistStopOthers([start, mood], { playlistID: playlistId });
     },
     startingSelection,
   });
