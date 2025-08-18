@@ -1,3 +1,8 @@
+## 0.5.2 - Stop Preparing
+
+- `Updated`
+  - Opening the `Combat` music manager manually does not automatically start playing the `Preparation` music
+
 ## 0.5.1 - Please Stop the Music
 
 - `Updated`

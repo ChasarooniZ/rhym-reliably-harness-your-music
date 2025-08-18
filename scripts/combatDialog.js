@@ -2,7 +2,7 @@ import { startPlaylistStopOthers } from "./lib/helper.js";
 import { createItemPickerDialog } from "./lib/picker.js";
 import { MODULE_ID } from "./misc.js";
 
-export async function combatDialog() {
+export async function combatDialog(playPrep = false) {
   if (!game.user.isGM) return;
 
   const start = game.settings.get(MODULE_ID, "combat-prefix");
@@ -37,7 +37,9 @@ export async function combatDialog() {
     icon: "far fa-swords",
     onStart: async () => {
       // Start playlist preparation music
-      await startPlaylistStopOthers([start], { playlistID: startingSelection });
+      await startPlaylistStopOthers([start], {
+        ...(playPrep ? { playlistID: startingSelection } : {})
+      });
     },
     onClick: async (playlistId) => {
       // Stop all currently playing mood music and start selected playlist
