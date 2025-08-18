@@ -77,7 +77,7 @@ Hooks.once("ready", async function () {
 
 export async function contextualMusicDialog() {
   if (game?.combat) {
-    combatDialog()
+    combatDialog({ playPrep: true })
   } else {
     moodDialog();
   }
