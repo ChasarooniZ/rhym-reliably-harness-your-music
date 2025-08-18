@@ -72,6 +72,14 @@ Hooks.once("ready", async function () {
       await moodDialog();
     }
   });
+
+  Hooks.on('updatePlaylist', (playlist, update, _info, _playerID) => {
+    if (!game.user.isGM) return;
+    const newSongID = update?.sounds?.find(s => s.playing)?._id;
+    if (newSongID) {
+      
+    }
+  })
 });
 
 
