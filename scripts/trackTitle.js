@@ -20,6 +20,26 @@ export async function trackTitleAnimation(text) {
   }
 
 
+  const fade = {
+    in: {
+      duration: duration / 4,
+      ease: "easeInOutQuart"
+    },
+    out: {
+      duration: duration * 3 / 8,
+      ease: "easeOutCubic",
+      motion: {
+        from: 0,
+        to: 30,
+        duration: duration * 3 / 8,
+        fromEnd: true,
+        ease: "easeOutQuint"
+      }
+    }
+  }
+
+
+
   const seq = new Sequence({ moduleName: game.modules.get(MODULE_ID).title })
     //Track name
     .effect()
@@ -44,8 +64,10 @@ export async function trackTitleAnimation(text) {
       y: 0
     })
     .duration(duration)
-    .fadeIn(duration / 4)
-    .fadeOut(duration / 2)
+    .fadeIn(fade.in.duration, { ease: fade.in.ease })
+    .scaleIn(0.9, fade.in.duration, { ease: fade.in.ease })
+    .fadeOut(fade.out.duration, { ease: fade.out.ease })
+    .animateProperty("sprite", "position.y", fade.out.motion)
     //Artist
     .effect()
     .name("RHYM-trackTitle-artist")
@@ -69,8 +91,10 @@ export async function trackTitleAnimation(text) {
       y: 0
     })
     .duration(duration)
-    .fadeIn(duration / 4)
-    .fadeOut(duration / 4)
+    .fadeIn(fade.in.duration, { ease: fade.in.ease })
+    .scaleIn(0.9, fade.in.duration, { ease: fade.in.ease })
+    .fadeOut(fade.out.duration, { ease: fade.out.ease })
+    .animateProperty("sprite", "position.y", fade.out.motion)
   seq.play()
 }
 

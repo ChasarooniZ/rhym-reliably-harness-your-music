@@ -132,7 +132,7 @@ Hooks.on("init", () => {
       max: 20,
       step: 0.5,
     },
-    default: 8,
+    default: 6,
     type: Number,
   });
 
