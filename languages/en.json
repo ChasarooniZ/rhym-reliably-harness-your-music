@@ -31,11 +31,27 @@
       "mood-prefix": {
         "name": "Mood Playlist Prefix",
         "hint": "Prefix for all your mood playlists to pull from"
+      },
+      "track-title": {
+        "size": {
+          "name": "Track Title Size",
+          "hint": "Size scaling of the track title that shows if you have it enabled in the playlist settings (Default is 5)"
+        },
+        "duration": {
+          "name": "Track Title Duration (s)",
+          "hint": "How long in seconds to display the track title (Default is 8)"
+        }
       }
     },
     "menu": {
       "right-click": "Right click to change the playlist image",
-      "playlist-image-path": "Image File path:"
+      "playlist-image-path": "Image File path:",
+      "mood": {
+        "title": "Pick Mood Music"
+      },
+      "combat": {
+        "title": "Pick Combat Music"
+      }
     },
     "controls": {
       "music": {
@@ -49,6 +65,17 @@
             }
           }
         }
+      }
+    },
+    "notification": {
+      "error": {
+        "no-playlists": "No playlists to select from, look at your RHYM module settings to make sure your prefix matches your playlists"
+      }
+    },
+    "playlist-config": {
+      "show-track-title": {
+        "name": "Show Track Title",
+        "hint": "When this enabled it will create a small animation showing the track title every time you switch tracks (Note: If you want to have it show an author/album on a lower line use '|' or '-' as a splitter)"
       }
     }
   }
