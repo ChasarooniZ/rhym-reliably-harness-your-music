@@ -20,7 +20,7 @@ export async function combatDialog({ playPrep = false }) {
 
   if (playlists.length === 0) {
     ui.notifications.error(
-      "No playlists to select from, look at your RHYM module settings to make sure your prefix matches your playlists"
+      game.i18n.localize(`${MODULE_ID}.notification.error.no-playlists`)
     );
     return;
   }
@@ -33,7 +33,7 @@ export async function combatDialog({ playPrep = false }) {
   await createItemPickerDialog({
     items: playlists,
     imageSettingsPath: "icon-mapping.combat",
-    title: "Pick Combat Music",
+    title: game.i18n.localize(`${MODULE_ID}.menu.combat.title`),
     icon: "far fa-swords",
     onStart: async () => {
       // Start playlist preparation music

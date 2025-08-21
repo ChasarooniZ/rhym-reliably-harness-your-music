@@ -1,3 +1,10 @@
+## 0.6.0 - Titling
+
+- `New`
+  - `Track Titles` - New option on playlists to display track titles as a little animation
+- `Updated`
+  - Improved Localization
+
 ## 0.5.2 - Stop Preparing
 
 - `Updated`

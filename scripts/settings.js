@@ -1,6 +1,5 @@
 import { MODULE_ID } from "./misc.js";
 import { contextualMusicDialog } from "./module.js";
-import { moodDialog } from "./moodDialog.js";
 
 Hooks.on("init", () => {
   game.settings.register(MODULE_ID, "enabled", {
@@ -100,6 +99,46 @@ Hooks.on("init", () => {
     default: {},
     type: Object,
   });
+
+  game.settings.register(MODULE_ID, "track-title.size", {
+    name: game.i18n.localize(
+      "rhym.module-settings.track-title.size.name"
+    ),
+    hint: game.i18n.localize(
+      "rhym.module-settings.track-title.size.hint"
+    ),
+    scope: "world",
+    config: true,
+    range: {
+      min: 0,
+      max: 10,
+      step: 0.5,
+    },
+    default: 5,
+    type: Number,
+  });
+
+  game.settings.register(MODULE_ID, "track-title.duration", {
+    name: game.i18n.localize(
+      "rhym.module-settings.track-title.duration.name"
+    ),
+    hint: game.i18n.localize(
+      "rhym.module-settings.track-title.duration.hint"
+    ),
+    scope: "world",
+    config: true,
+    range: {
+      min: 0,
+      max: 20,
+      step: 0.5,
+    },
+    default: 6,
+    type: Number,
+  });
+
+
+
+  //Keybind
 
   game.keybindings.register(MODULE_ID, "music-dialog", {
     name: game.i18n.localize(`${MODULE_ID}.controls.music.name`),

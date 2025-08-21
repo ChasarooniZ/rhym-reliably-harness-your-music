@@ -19,7 +19,7 @@ export async function moodDialog() {
 
   if (playlists.length === 0) {
     ui.notifications.error(
-      "No playlists to select from, look at your RHYM module settings to make sure your prefix matches your playlists"
+      game.i18n.localize(`${MODULE_ID}.notification.error.no-playlists`)
     );
     return;
   }
@@ -27,7 +27,7 @@ export async function moodDialog() {
   await createItemPickerDialog({
     items: playlists,
     imageSettingsPath: "icon-mapping.mood",
-    title: "Pick Mood Music",
+    title: game.i18n.localize(`${MODULE_ID}.menu.mood.title`),
     icon: "fa-solid fa-moon-stars",
     onStart: async () => {
       // Start playlist preparation music
