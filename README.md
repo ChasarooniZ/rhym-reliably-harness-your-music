@@ -31,6 +31,11 @@ https://github.com/user-attachments/assets/a1d9752a-ed45-4486-b5aa-2647f760e94f
 
 https://github.com/user-attachments/assets/e509612d-e4f4-48ac-a087-ea675a8f6643
 
+**Show Track Titles**
+
+https://github.com/user-attachments/assets/33b6968b-7ebf-4af1-b2bb-ca8bab1002fa
+
+
 
 
 
