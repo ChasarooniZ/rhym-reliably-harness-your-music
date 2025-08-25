@@ -1,3 +1,8 @@
+## 0.6.1
+
+- `Updated`
+  - Fixed bug where playlist prep failed to run (🐛 @legacy)
+
 ## 0.6.0 - Titling
 
 - `New`
