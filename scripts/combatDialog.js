@@ -2,7 +2,7 @@ import { startPlaylistStopOthers } from "./lib/helper.js";
 import { createItemPickerDialog } from "./lib/picker.js";
 import { MODULE_ID } from "./misc.js";
 
-export async function combatDialog({ playPrep = false }) {
+export async function combatDialog({ playPrep = false } = { playPrep: false }) {
   if (!game.user.isGM) return;
 
   const start = game.settings.get(MODULE_ID, "combat-prefix");
