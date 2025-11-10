@@ -1,0 +1,82 @@
+{
+  "I18N.LANGUAGE": "Polski",
+  "rhym": {
+    "module-settings": {
+      "enabled": {
+        "name": "Włącz moduł",
+        "hint": "Gdy opcja nie jest zaznaczona, wyłącza wszystkie funkcje tego modułu."
+      },
+      "combat-prefix": {
+        "name": "Prefiks playlisty walki",
+        "hint": "Prefiks dla wszystkich twoich playlist bitewnych, z których można pobierać utwory"
+      },
+      "combat-prep-playlist": {
+        "name": "Nazwa playlisty „Przygotowania do walki”",
+        "hint": "Wprowadź nazwę listy odtwarzania, którą chcesz odtworzyć, gdy dodano moduł śledzenia walki, ale walka jeszcze się nie rozpoczęła."
+      },
+      "combat-victory": {
+        "enabled": {
+          "name": "Odtworzyć playlistę „Zwycięstwa” po walce?",
+          "hint": "Po włączeniu odtwarza określoną playlistę zwycięstwa po walce."
+        },
+        "playlist": {
+          "name": "Playlista Zwycięstwa",
+          "hint": "Nazwa listy odtwarzania, która ma być odtwarzana po zakończeniu walki"
+        },
+        "duration": {
+          "name": "Zagraj utwór zwycięstwa dla...",
+          "hint": "Jak długo w sekundach ma być odtwarzana playlista zwycięstwa. 0 oznacza, że nigdy nie zostanie automatycznie zatrzymana."
+        }
+      },
+      "mood-prefix": {
+        "name": "Prefiks playlisty nastrojowej",
+        "hint": "Prefiks dla wszystkich playlist nastrojowych, z których można korzystać"
+      },
+      "track-title": {
+        "size": {
+          "name": "Rozmiar tytułu utworu",
+          "hint": "Skalowanie rozmiaru tytułu utworu, które jest widoczne, jeśli włączyłeś tę opcję w ustawieniach listy odtwarzania (domyślnie jest to 5)."
+        },
+        "duration": {
+          "name": "Czas trwania wyświetlania tytułu utworu (w sekundach)",
+          "hint": "Ile sekund ma trwać wyświetlanie tytułu utworu (domyślnie 8)"
+        }
+      }
+    },
+    "menu": {
+      "right-click": "Kliknij prawym przyciskiem myszy, aby zmienić obraz listy odtwarzania.",
+      "playlist-image-path": "Ścieżka do pliku obrazu:",
+      "mood": {
+        "title": "Wybierz nastrojową muzykę"
+      },
+      "combat": {
+        "title": "Wybierz muzykę do walki"
+      }
+    },
+    "controls": {
+      "music": {
+        "name": "Otwórz kontekstowe menu muzyki",
+        "hint": "Otwórz kontekstowy selektor muzyki",
+        "toolclip": {
+          "heading": "Otwórz muzykę",
+          "items": {
+            "description": {
+              "paragraph": "Otwórz okno dialogowe wyboru muzyki"
+            }
+          }
+        }
+      }
+    },
+    "notification": {
+      "error": {
+        "no-playlists": "Nie ma list odtwarzania do wyboru. Sprawdź ustawienia modułu RHYM, aby upewnić się, że prefiks jest zgodny z listami odtwarzania."
+      }
+    },
+    "playlist-config": {
+      "show-track-title": {
+        "name": "Pokaż tytuł utworu",
+        "hint": "Po włączeniu tej opcji za każdym razem, gdy zmienisz utwór, pojawi się mała animacja pokazująca tytuł utworu (uwaga: jeśli chcesz, aby autor/album był wyświetlany w dolnej linii, użyj znaku „|” lub „-” jako separatora)."
+      }
+    }
+  }
+}
