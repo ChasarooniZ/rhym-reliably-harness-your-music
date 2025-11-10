@@ -1,7 +1,7 @@
 ## 0.6.2
 
 - `New`
-  - Added optional separate Keybinds for `Mood` and `Combat` music managers
+  - Added optional separate Keybinds for Mood and Combat music managers (🧠 @boothy13)
 
 ## 0.6.1
 
