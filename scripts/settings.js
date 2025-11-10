@@ -1,5 +1,7 @@
+import { combatDialog } from "./combatDialog.js";
 import { MODULE_ID } from "./misc.js";
 import { contextualMusicDialog } from "./module.js";
+import { moodDialog } from "./moodDialog.js";
 
 Hooks.on("init", () => {
   game.settings.register(MODULE_ID, "enabled", {
@@ -150,6 +152,32 @@ Hooks.on("init", () => {
     ],
     onDown: (context) => {
       contextualMusicDialog();
+    },
+    onUp: () => {},
+    restricted: true, // Restrict this Keybinding to gamemaster only?
+    precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
+  });
+
+  game.keybindings.register(MODULE_ID, "combat-dialog", {
+    name: game.i18n.localize(`${MODULE_ID}.controls.combat.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.controls.combat.hint`),
+    editable: [
+    ],
+    onDown: (context) => {
+      combatDialog();
+    },
+    onUp: () => {},
+    restricted: true, // Restrict this Keybinding to gamemaster only?
+    precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
+  });
+
+  game.keybindings.register(MODULE_ID, "mood-dialog", {
+    name: game.i18n.localize(`${MODULE_ID}.controls.mood.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.controls.mood.hint`),
+    editable: [
+    ],
+    onDown: (context) => {
+      moodDialog();
     },
     onUp: () => {},
     restricted: true, // Restrict this Keybinding to gamemaster only?
