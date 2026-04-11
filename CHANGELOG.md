@@ -1,3 +1,7 @@
+## 1.0.0
+
+- Updated to support FoundryVTT `14`
+
 ## 0.6.2
 
 - `New`
