@@ -1,0 +1,82 @@
+{
+  "I18N.LANGUAGE": "Français",
+  "rhym": {
+    "module-settings": {
+      "enabled": {
+        "name": "Activer le module",
+        "hint": "Lorsqu'il n'est pas sélectionné, désactive toutes les fonctionnalités de ce module"
+      },
+      "combat-prefix": {
+        "name": "Préfixe de la liste de lecture du combat",
+        "hint": "Préfixe pour toutes vos listes de lecture de combat à extraire"
+      },
+      "combat-prep-playlist": {
+        "name": "Nom de la playlist des préparatifs de combat",
+        "hint": "Saisissez le nom de la liste de lecture que vous souhaitez jouer lorsque la rencontre de combat a été ajoutée mais que le combat n'a pas encore commencé."
+      },
+      "combat-victory": {
+        "enabled": {
+          "name": "Écouter la liste de lecture de victoire après le combat ?",
+          "hint": "Lorsque cette option est activée, la liste de lecture de victoire spécifiée est jouée après le combat."
+        },
+        "playlist": {
+          "name": "Playlist de victoire",
+          "hint": "Nom de la liste de lecture à jouer lorsque le combat est terminé"
+        },
+        "duration": {
+          "name": "Jouez la chanson de victoire pendant...",
+          "hint": "Durée en secondes de la liste de lecture de victoire ? 0 signifie qu'elle ne sera jamais arrêtée automatiquement."
+        }
+      },
+      "mood-prefix": {
+        "name": "Préfixe de la playlist d'humeur",
+        "hint": "Préfixe pour toutes vos listes de lecture d'humeur à extraire"
+      },
+      "track-title": {
+        "size": {
+          "name": "Montre la taille du titre du morceau",
+          "hint": "Si vous avez activé l'option, cela ajuste la taille du titre du morceau affiché  (Par défaut : 5)."
+        },
+        "duration": {
+          "name": "Montre la durée du morceau",
+          "hint": "Affichage du titre du morceau (en secondes) (par défaut : 8)"
+        }
+      }
+    },
+    "menu": {
+      "right-click": "Faites un clic droit pour changer l'image de la liste de lecture",
+      "playlist-image-path": "Chemin du fichier image :",
+      "mood": {
+        "title": "Choisissez une musique d'ambiance"
+      },
+      "combat": {
+        "title": "Choisissez une musique de combat"
+      }
+    },
+    "controls": {
+      "music": {
+        "name": "Ouvrir le menu contextuel de la musique",
+        "hint": "Ouvrir le sélecteur de musique contextuelle",
+        "toolclip": {
+          "heading": "Ouvrir la musique",
+          "items": {
+            "description": {
+              "paragraph": "Ouvrir la boîte de dialogue du sélecteur de musique"
+            }
+          }
+        }
+      }
+    },
+    "notification": {
+      "error": {
+        "no-playlists": "Aucune liste de lecture dans laquelle choisir. Consultez les paramètres de votre module RHYM pour vous assurer que votre préfixe correspond à vos listes de lecture."
+      }
+    },
+    "playlist-config": {
+      "show-track-title": {
+        "name": "Afficher le titre du morceau",
+        "hint": "Lorsque cette option est activée, cela crée une petite animation montrant le titre du morceau à chaque changement de piste (Note : si vous souhaitez afficher l’artiste/l’album sur une ligne en dessous, utilisez « | » ou « - » comme séparateur)."
+      }
+    }
+  }
+}
