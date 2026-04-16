@@ -1,3 +1,6 @@
+## 0.6.3
+- Updated French translation (🌐 @rectulo)
+
 ## 0.6.2
 
 - `New`
