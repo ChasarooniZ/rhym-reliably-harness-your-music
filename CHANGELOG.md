@@ -1,5 +1,10 @@
-## 0.6.3
+## 1.0.1
 - Updated French translation (🌐 @rectulo)
+
+
+## 1.0.0
+
+- Updated to support FoundryVTT `14`
 
 ## 0.6.2
 
