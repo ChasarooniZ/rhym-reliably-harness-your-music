@@ -1,7 +1,13 @@
-## 1.0.1
+## 1.0.2
+
 
 - Actually updated to `v14`
 - Added new release script to make releases easier
+
+## 1.0.1
+
+- Updated French translation (🌐 @rectulo)
+
 
 ## 1.0.0
 
@@ -10,7 +16,7 @@
 ## 0.6.2
 
 - `New`
-  - Added optional separate Keybinds for `Mood` and `Combat` music managers
+  - Added optional separate Keybinds for Mood and Combat music managers (🧠 @boothy13)
 
 ## 0.6.1
 
