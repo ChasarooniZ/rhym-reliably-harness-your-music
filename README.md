@@ -1,6 +1,6 @@
 [![module_banner](https://github.com/ChasarooniZ/pf2e-usage-updater/assets/79132112/3b2a4f8c-7ba1-4647-b073-d8ecac9d93a6)](https://chasarooniz.github.io/)
 
-![](https://img.shields.io/badge/Foundry-v13-informational)
+![](https://img.shields.io/badge/Foundry-v14-informational)
 ![All Downloads](https://img.shields.io/github/downloads/ChasarooniZ/rhym-reliably-harness-your-music/total?color=5e0000&label=All%20Downloads)
 ![Latest Release Download Count](https://img.shields.io/github/downloads/ChasarooniZ/rhym-reliably-harness-your-music/latest/module.zip)
 ![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Frhym&colorB=4aa94a)
@@ -20,9 +20,6 @@ Currently a WIP module, releasing a basic version of one of the features of the 
   - If you **Right Click** a playlist you can change the icon
 - IF a Preparations playlist is set, it Will play it when a combat is created, until you select a separate playlist
 
-
-
-
 **Set Music**
 
 https://github.com/user-attachments/assets/a1d9752a-ed45-4486-b5aa-2647f760e94f
@@ -34,10 +31,6 @@ https://github.com/user-attachments/assets/e509612d-e4f4-48ac-a087-ea675a8f6643
 **Show Track Titles**
 
 https://github.com/user-attachments/assets/33b6968b-7ebf-4af1-b2bb-ca8bab1002fa
-
-
-
-
 
 ## Table of Contents
 

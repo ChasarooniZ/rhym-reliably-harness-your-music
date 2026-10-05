@@ -1,4 +1,11 @@
+## 1.0.2
+
+
+- Actually updated to `v14`
+- Added new release script to make releases easier
+
 ## 1.0.1
+
 - Updated French translation (🌐 @rectulo)
 
 
