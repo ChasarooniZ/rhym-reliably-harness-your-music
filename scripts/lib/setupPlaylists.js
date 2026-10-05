@@ -12,6 +12,4 @@ async function setupFolder() {
   });
 }
 
-async function setupUserPlaylists() {
-    
-}
+async function setupUserPlaylists() {}
